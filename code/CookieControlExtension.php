@@ -70,10 +70,11 @@ class CookieControlExtension extends Extension
             $script .= "locale: '".$locale."',";
             $script .= "timeout: $timeout,";
             $script .= "expiration: $expiration,";
-            $script .= "domain: '" . $_SERVER['HTTP_HOST'] . "',";
+            //$script .= "domain: '" . $_SERVER['HTTP_HOST'] . "',";
+            $script .= "domain: '.hst1.nl',";
             $script .= "statement: 'https://google.com',";
             $script .= "performace: ['JSESSIONID'],";
-            $script .= "analytics: ['ga'],";
+            $script .= "analytics: ['_gat', 'ga', '_ga'],";
             $script .= "marketing: ['SSID']";
             $script .= "});";
             $script .= "</script>";
