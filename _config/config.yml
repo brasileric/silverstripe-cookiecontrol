@@ -1,0 +1,11 @@
+---
+name: cookiecontrol
+---
+
+Page_Controller:
+  extensions:
+    - CookieControlExtension
+
+SiteConfig:
+  extensions:
+    - CookieControlSiteConfig
