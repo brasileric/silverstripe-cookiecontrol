@@ -1,2 +1,316 @@
-!function(e){var o=!1;if("function"==typeof define&&define.amd&&(define(e),o=!0),"object"==typeof exports&&(module.exports=e(),o=!0),!o){var t=window.Cookies,n=window.Cookies=e();n.noConflict=function(){return window.Cookies=t,n}}}(function(){function k(){for(var e=0,o={};e<arguments.length;e++){var t=arguments[e];for(var n in t)o[n]=t[n]}return o}return function e(p){function f(e,o,t){var n;if("undefined"!=typeof document){if(1<arguments.length){if("number"==typeof(t=k({path:"/"},f.defaults,t)).expires){var i=new Date;i.setMilliseconds(i.getMilliseconds()+864e5*t.expires),t.expires=i}t.expires=t.expires?t.expires.toUTCString():"";try{n=JSON.stringify(o),/^[\{\[]/.test(n)&&(o=n)}catch(e){}o=p.write?p.write(o,e):encodeURIComponent(String(o)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),e=(e=(e=encodeURIComponent(String(e))).replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent)).replace(/[\(\)]/g,escape);var c="";for(var a in t)t[a]&&(c+="; "+a,!0!==t[a]&&(c+="="+t[a]));return document.cookie=e+"="+o+c}e||(n={});for(var r=document.cookie?document.cookie.split("; "):[],s=/(%[0-9A-Z]{2})+/g,d=0;d<r.length;d++){var l=r[d].split("="),m=l.slice(1).join("=");this.json||'"'!==m.charAt(0)||(m=m.slice(1,-1));try{var u=l[0].replace(s,decodeURIComponent);if(m=p.read?p.read(m,u):p(m,u)||m.replace(s,decodeURIComponent),this.json)try{m=JSON.parse(m)}catch(e){}if(e===u){n=m;break}e||(n[u]=m)}catch(e){}}return n}}return(f.set=f).get=function(e){return f.call(f,e)},f.getJSON=function(){return f.apply({json:!0},[].slice.call(arguments))},f.defaults={},f.remove=function(e,o){f(e,"",k(o,{expires:-1}))},f.withConverter=e,f}(function(){})}),window["gdpr-cookie-notice-templates"]={},window["gdpr-cookie-notice-templates"]["bar.html"]='<div class="gdpr-cookie-notice">\n  <p class="gdpr-cookie-notice-description">{description}</p>\n  <nav class="gdpr-cookie-notice-nav">\n    <a href="#" class="gdpr-cookie-notice-nav-item gdpr-cookie-notice-nav-item-settings">{settings}</a>\n    <a href="#" class="gdpr-cookie-notice-nav-item gdpr-cookie-notice-nav-item-accept gdpr-cookie-notice-nav-item-btn">{accept}</a>\n  </div>\n</div>\n',window["gdpr-cookie-notice-templates"]["category.html"]='<li class="gdpr-cookie-notice-modal-cookie">\n  <div class="gdpr-cookie-notice-modal-cookie-row">\n    <h3 class="gdpr-cookie-notice-modal-cookie-title">{title}</h3>\n    <input type="checkbox" name="gdpr-cookie-notice-{prefix}" checked="checked" id="gdpr-cookie-notice-{prefix}" class="gdpr-cookie-notice-modal-cookie-input">\n    <label class="gdpr-cookie-notice-modal-cookie-input-switch" for="gdpr-cookie-notice-{prefix}"></label>\n  </div>\n  <p class="gdpr-cookie-notice-modal-cookie-info">{desc}</p>\n</li>\n',window["gdpr-cookie-notice-templates"]["modal.html"]='<div class="gdpr-cookie-notice-modal">\n  <div class="gdpr-cookie-notice-modal-content">\n    <div class="gdpr-cookie-notice-modal-header">\n      <h2 class="gdpr-cookie-notice-modal-title">{settings}</h2>\n      <button type="button" class="gdpr-cookie-notice-modal-close"></button>\n    </div>\n    <ul class="gdpr-cookie-notice-modal-cookies"></ul>\n    <div class="gdpr-cookie-notice-modal-footer">\n      <a href="#" class="gdpr-cookie-notice-modal-footer-item gdpr-cookie-notice-modal-footer-item-statement">{statement}</a>\n      <a href="#" class="gdpr-cookie-notice-modal-footer-item gdpr-cookie-notice-modal-footer-item-save gdpr-cookie-notice-modal-footer-item-btn"><span>{save}</span></a>\n    </div>\n  </div>\n</div>\n';var gdprCookieNoticeLocales={};function gdprCookieNotice(c){var n="gdprcookienotice",a="gdpr-cookie-notice",r=window[a+"-templates"],i=Cookies.noConflict(),s=!1,d=!1,l=!1,m=["performace","analytics","marketing"];c.locale||(c.locale="en"),c.timeout||(c.timeout=500),c.domain||(c.domain=null),c.expiration||(c.expiration=30);var u=i.getJSON(n),p=new CustomEvent("gdprCookiesEnabled",{detail:u});function f(e){for(var o=!1,t=0;t<m.length;t++)if(c[m[t]]&&!e[m[t]])for(var n=0;n<c[m[t]].length;n++)i.remove(c[m[t]][n]),o=!0;o?g():document.documentElement.classList.remove(a+"-loaded")}function k(e){var o={date:new Date,necessary:!0,performace:!0,analytics:!0,marketing:!0};if(e)for(var t=0;t<m.length;t++)o[m[t]]=document.getElementById(a+"-cookie_"+m[t]).checked;i.set(n,o,{expires:c.expiration,domain:c.domain}),f(o),p=new CustomEvent("gdprCookiesEnabled",{detail:o}),document.dispatchEvent(p)}function e(){if(d)return!1;var e,o,t=v("bar.html");document.body.insertAdjacentHTML("beforeend",t),e=document.querySelectorAll("."+a+"-nav-item-settings")[0],o=document.querySelectorAll("."+a+"-nav-item-accept")[0],e.addEventListener("click",function(e){e.preventDefault(),h()}),o.addEventListener("click",function(e){e.preventDefault(),k()}),d=!0}function g(){e(),setTimeout(function(){document.documentElement.classList.add(a+"-loaded")},c.timeout)}function v(e,t){var o=r[e],n=gdprCookieNoticeLocales[c.locale];if(t?t+="_":t="",!("string"==typeof o&&n instanceof Object))return!1;for(var i in n)return o.replace(/({([^}]+)})/g,function(e){var o=e.replace(/{/,"").replace(/}/,"");return"prefix"==o?t.slice(0,-1):n[o]?n[o]:n[t+o]?n[t+o]:e})}function o(){if(s)return!1;var e=v("modal.html");document.body.insertAdjacentHTML("beforeend",e);var o=document.querySelector("."+a+"-modal-cookies");o.innerHTML+=v("category.html","cookie_essential");var t=document.querySelector("."+a+"-modal-cookie-input"),n=document.querySelector("."+a+"-modal-cookie-input-switch");n.innerHTML=gdprCookieNoticeLocales[c.locale].always_on,n.classList.add(a+"-modal-cookie-state"),n.classList.remove(a+"-modal-cookie-input-switch"),t.remove(),c.performace&&(o.innerHTML+=v("category.html","cookie_performace")),c.analytics&&(o.innerHTML+=v("category.html","cookie_analytics")),c.marketing&&(o.innerHTML+=v("category.html","cookie_marketing")),function(){var e=document.querySelectorAll("."+a+"-modal-close")[0],o=document.querySelectorAll("."+a+"-modal-footer-item-statement")[0],t=document.querySelectorAll("."+a+"-modal-cookie-title"),n=document.querySelectorAll("."+a+"-modal-footer-item-save")[0];e.addEventListener("click",function(){return document.documentElement.classList.remove(a+"-show-modal"),!1}),o.addEventListener("click",function(e){e.preventDefault(),window.location.href=c.statement});for(var i=0;i<t.length;i++)t[i].addEventListener("click",function(){return this.parentNode.parentNode.classList.toggle("open"),!1});n.addEventListener("click",function(e){e.preventDefault(),n.classList.add("saved"),setTimeout(function(){n.classList.remove("saved")},1e3),k(!0)})}(),u&&(document.getElementById(a+"-cookie_performace").checked=u.performace,document.getElementById(a+"-cookie_analytics").checked=u.analytics,document.getElementById(a+"-cookie_marketing").checked=u.marketing),s=!0}function h(){o(),document.documentElement.classList.add(a+"-show-modal")}u?(f(u),document.dispatchEvent(p)):(g(),c.implicit&&window.addEventListener("scroll",function e(){var o,t,n,i,c;o=window.innerHeight||(document.documentElement||document.body).clientHeight,c=document,t=Math.max(c.body.scrollHeight,c.documentElement.scrollHeight,c.body.offsetHeight,c.documentElement.offsetHeight,c.body.clientHeight,c.documentElement.clientHeight),n=window.pageYOffset||(document.documentElement||document.body.parentNode||document.body).scrollTop,i=t-o,25<Math.floor(n/i*100)&&!l&&(l=!0)&&(k(),window.removeEventListener("click",e))}));var t=document.querySelectorAll("."+a+"-settings-button");if(t)for(var y=0;y<t.length;y++)t[y].addEventListener("click",function(e){e.preventDefault(),h()})}gdprCookieNoticeLocales.en={description:"We use cookies to offer you a better browsing experience, personalise content and ads, to provide social media features and to analyse our traffic. Read about how we use cookies and how you can control them by clicking Cookie Settings. You consent to our cookies if you continue to use this website.",settings:"Cookie settings",accept:"Accept cookies",statement:"Our cookie statement",save:"Save settings",always_on:"Always on",cookie_essential_title:"Essential website cookies",cookie_essential_desc:"Necessary cookies help make a website usable by enabling basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.",cookie_performace_title:"Performance cookies",cookie_performace_desc:"These cookies are used to enhance the performance and functionality of our websites but are non-essential to their use. For example it stores your preferred language or the region that you are in.",cookie_analytics_title:"Analytics cookies",cookie_analytics_desc:"We use analytics cookies to help us measure how users interact with website content, which helps us customize our websites and application for you in order to enhance your experience.",cookie_marketing_title:"Marketing cookies",cookie_marketing_desc:"These cookies are used to make advertising messages more relevant to you and your interests. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers."};
-//# sourceMappingURL=script.js.map
+// Load locales
+var gdprCookieNoticeLocales = {};
+
+function gdprCookieNotice(config) {
+  var namespace = 'gdprcookienotice';
+  var pluginPrefix = 'gdpr-cookie-notice';
+  var templates = window[pluginPrefix+'-templates'];
+  var gdprCookies = Cookies.noConflict();
+  var modalLoaded = false;
+  var noticeLoaded = false;
+  var cookiesAccepted = false;
+  var categories = [];
+  // add to categories array if in config
+  if(config.performance) categories.push('performance');
+  if(config.analytics) categories.push('analytics');
+  if(config.marketing) categories.push('marketing');
+
+
+        // Default config options
+  if(!config.locale) config.locale = 'en';
+  if(!config.timeout) config.timeout = 500;
+  if(!config.domain) config.domain = null;
+  if(!config.expiration) config.expiration = 30;
+
+  // Get the users current cookie selection
+  var currentCookieSelection = getCookie();
+  var cookiesAcceptedEvent = new CustomEvent('gdprCookiesEnabled', {detail: currentCookieSelection});
+
+  // Show cookie bar if needed
+  if(!currentCookieSelection) {
+    showNotice();
+
+    // Accept cookies on page scroll
+    if(config.implicit) {
+      acceptOnScroll();
+    }
+  } else {
+    deleteCookies(currentCookieSelection);
+    document.dispatchEvent(cookiesAcceptedEvent);
+  }
+
+  // Get gdpr cookie notice stored value
+  function getCookie() {
+    return gdprCookies.getJSON(namespace);
+  }
+
+  // Delete cookies if needed
+  function deleteCookies(savedCookies) {
+    var notAllEnabled = false;
+    for (var i = 0; i < categories.length; i++) {
+      if(config[categories[i]] && !savedCookies[categories[i]]) {
+        for (var ii = 0; ii < config[categories[i]].length; ii++) {
+          gdprCookies.remove(config[categories[i]][ii], { path: '',domain: config.domain });
+          notAllEnabled = true;
+        }
+      }
+    }
+
+
+    // Show the notice if not all categories are enabled
+    if(notAllEnabled) {
+      showNotice();
+    } else {
+      hideNotice();
+    }
+  }
+
+  // Hide cookie notice bar
+  function hideNotice() {
+    document.documentElement.classList.remove(pluginPrefix+'-loaded');
+  }
+
+  // Write gdpr cookie notice's cookies when user accepts cookies
+  function acceptCookies(save) {
+    var value = {
+      date: new Date(),
+      necessary: true,
+      performance: true,
+      analytics: true,
+      marketing: true
+    };
+
+    // If request was coming from the modal, check for the settings
+    if(save) {
+      for (var i = 0; i < categories.length; i++) {
+        value[categories[i]] = document.getElementById(pluginPrefix+'-cookie_'+categories[i]).checked;
+      }
+    }
+    gdprCookies.set(namespace, value, { expires: config.expiration, domain: config.domain });
+    deleteCookies(value);
+
+    // Load marketing scripts that only works when cookies are accepted
+    cookiesAcceptedEvent = new CustomEvent('gdprCookiesEnabled', {detail: value});
+    document.dispatchEvent(cookiesAcceptedEvent);
+
+  }
+
+  // Show the cookie bar
+  function buildNotice() {
+    if(noticeLoaded) {
+      return false;
+    }
+
+    var noticeHtml = localizeTemplate('bar.html');
+    document.body.insertAdjacentHTML('beforeend', noticeHtml);
+
+    // Load click functions
+    setNoticeEventListeners();
+
+    // Make sure its only loaded once
+    noticeLoaded = true;
+  }
+
+  // Show the cookie notice
+  function showNotice() {
+    buildNotice();
+
+    // Show the notice with a little timeout
+    setTimeout(function(){
+      document.documentElement.classList.add(pluginPrefix+'-loaded');
+    }, config.timeout);
+  }
+
+  // Localize templates
+  function localizeTemplate(template, prefix) {
+    var str = templates[template];
+    var data = gdprCookieNoticeLocales[config.locale];
+
+    if(prefix) {
+      prefix = prefix+'_';
+    } else {
+      prefix = '';
+    }
+
+    if (typeof str === 'string' && (data instanceof Object)) {
+      for (var key in data) {
+        return str.replace(/({([^}]+)})/g, function(i) {
+          var key = i.replace(/{/, '').replace(/}/, '');
+
+          if(key == 'prefix') {
+            return prefix.slice(0, -1);
+          }
+
+          if(data[key]) {
+            return data[key];
+          } else if(data[prefix+key]) {
+            return data[prefix+key];
+          } else {
+            return i;
+          }
+        });
+      }
+    } else {
+      return false;
+    }
+  }
+
+  // Build modal window
+  function buildModal() {
+    if(modalLoaded) {
+      return false;
+    }
+
+    // Load modal template
+    var modalHtml = localizeTemplate('modal.html');
+
+    // Append modal into body
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    // Get empty category list
+    var categoryList = document.querySelector('.'+pluginPrefix+'-modal-cookies');
+
+    //Load essential cookies
+    categoryList.innerHTML += localizeTemplate('category.html', 'cookie_essential');
+    var input = document.querySelector('.'+pluginPrefix+'-modal-cookie-input');
+    var label = document.querySelector('.'+pluginPrefix+'-modal-cookie-input-switch');
+    label.innerHTML = gdprCookieNoticeLocales[config.locale]['always_on'];
+    label.classList.add(pluginPrefix+'-modal-cookie-state');
+    label.classList.remove(pluginPrefix+'-modal-cookie-input-switch');
+    input.remove();
+
+    // Load other categories if needed
+    if(config.performance) categoryList.innerHTML += localizeTemplate('category.html', 'cookie_performance');
+    if(config.analytics) categoryList.innerHTML += localizeTemplate('category.html', 'cookie_analytics');
+    if(config.marketing) categoryList.innerHTML += localizeTemplate('category.html', 'cookie_marketing');
+
+    // Load click functions
+    setModalEventListeners();
+
+    // Update checkboxes based on stored info(if any)
+    if(currentCookieSelection) {
+        if(config.performance) document.getElementById(pluginPrefix+'-cookie_performance').checked = currentCookieSelection.performance;
+        if(config.analytics) document.getElementById(pluginPrefix+'-cookie_analytics').checked = currentCookieSelection.analytics;
+        if(config.marketing) document.getElementById(pluginPrefix+'-cookie_marketing').checked = currentCookieSelection.marketing;
+    }
+
+    // Make sure modal is only loaded once
+    modalLoaded = true;
+  }
+
+  // Show modal window
+  function showModal() {
+    buildModal();
+    document.documentElement.classList.add(pluginPrefix+'-show-modal');
+  }
+
+  // Hide modal window
+  function hideModal() {
+    document.documentElement.classList.remove(pluginPrefix+'-show-modal');
+  }
+
+  // Click functions in the notice
+  function setNoticeEventListeners() {
+    var settingsButton = document.querySelectorAll('.'+pluginPrefix+'-nav-item-settings')[0];
+    var acceptButton = document.querySelectorAll('.'+pluginPrefix+'-nav-item-accept')[0];
+
+    settingsButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      showModal();
+    });
+
+    acceptButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      acceptCookies();
+    });
+
+  }
+
+  // Click functions in the modal
+  function setModalEventListeners() {
+    var closeButton = document.querySelectorAll('.'+pluginPrefix+'-modal-close')[0];
+    var statementButton = document.querySelectorAll('.'+pluginPrefix+'-modal-footer-item-statement')[0];
+    var categoryTitles = document.querySelectorAll('.'+pluginPrefix+'-modal-cookie-title');
+    var saveButton = document.querySelectorAll('.'+pluginPrefix+'-modal-footer-item-save')[0];
+
+    closeButton.addEventListener('click', function() {
+      hideModal();
+      return false;
+    });
+
+    statementButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = config.statement;
+    });
+
+    for (var i = 0; i < categoryTitles.length; i++) {
+      categoryTitles[i].addEventListener('click', function() {
+        this.parentNode.parentNode.classList.toggle('open');
+        return false;
+      });
+    }
+
+    saveButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      saveButton.classList.add('saved');
+      setTimeout(function(){
+        saveButton.classList.remove('saved');
+      }, 1000);
+      acceptCookies(true);
+    });
+
+  }
+
+  // Settings button on the page somewhere
+  var globalSettingsButton = document.querySelectorAll('.'+pluginPrefix+'-settings-button');
+  if(globalSettingsButton) {
+    for (var i = 0; i < globalSettingsButton.length; i++) {
+      globalSettingsButton[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        showModal();
+      });
+    }
+  }
+
+
+  // Get document height
+  function getDocHeight() {
+    var D = document;
+    return Math.max(
+      D.body.scrollHeight, D.documentElement.scrollHeight,
+      D.body.offsetHeight, D.documentElement.offsetHeight,
+      D.body.clientHeight, D.documentElement.clientHeight
+    );
+  }
+
+  // Check if at least page is 25% scrolled down
+  function amountScrolled(){
+    var winheight= window.innerHeight || (document.documentElement || document.body).clientHeight;
+    var docheight = getDocHeight();
+    var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    var trackLength = docheight - winheight;
+    var pctScrolled = Math.floor(scrollTop/trackLength * 100); // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
+    if(pctScrolled > 25 && !cookiesAccepted) {
+      cookiesAccepted = true;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // Accept cookies on scroll
+  function acceptOnScroll() {
+    window.addEventListener('scroll', function _listener() {
+      if(amountScrolled()) {
+        acceptCookies();
+        window.removeEventListener('click', _listener);
+      }
+    });
+  }
+
+}
+
+//onderstaande remove actie werkt!
+//Cookies.remove('_gid', { path: '',domain: '.hst1.nl' }); // removed!
+
+//Cookies.set('_ga', 'value', { domain: '.hst1.nl', expires: 365 });
