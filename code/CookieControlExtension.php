@@ -79,13 +79,13 @@ class CookieControlExtension extends Extension
             //$script .= "implicit: $implicit,";
             $script .= "statement: '".$siteConfig->CcStatement()->AbsoluteLink()."',";
             if ($siteConfig->CcPerformance == true){
-                $script .= "performance: [".CookieControl::getCookies('PerformanceCookies')."],";
+                $script .= "performance: ['".$this->getCookiesFromConfig('PerformanceCookies')."'],";
             }
             if ($siteConfig->CcAnalytics == true) {
-                $script .= "analytics: [" . CookieControl::getCookies('AnalyticsCookies') . "],";
+                $script .= "analytics: ['".$this->getCookiesFromConfig('AnalyticsCookies')."'],";
             }
             if ($siteConfig->CcMarketing == true) {
-                $script .= "marketing: [" . CookieControl::getCookies('MarketingCookies') . "]";
+                $script .= "marketing: ['". $this->getCookiesFromConfig('MarketingCookies')."']";
             }
             $script .= "});";
             $script .= "</script>";
@@ -95,6 +95,12 @@ class CookieControlExtension extends Extension
         }
 
         return false;
+
+    }
+
+    public function getCookiesFromConfig($type){
+
+        return str_replace(",", "','", str_replace(' ', '', CookieControl::getCookies($type)));
 
     }
 
