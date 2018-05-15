@@ -1,5 +1,5 @@
 {
-  "name": "hestec/silverstripe-cookiebar",
+  "name": "hestec/silverstripe-cookiecontrol",
   "description": "GDPR EU cookie notice for SilverStripe",
   "type": "silverstripe-module",
   "license": "BSD-3-Clause",
@@ -12,13 +12,13 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/brasileric/silverstripe-cookiebar/issues"
+    "issues": "https://github.com/brasileric/silverstripe-cookiecontrol/issues"
   },
   "require": {
     "silverstripe/framework": ">=3.1",
     "silverstripe/cms": ">=3.1"
   },
   "extra": {
-    "installer-name": "cookiebar"
+    "installer-name": "cookiecontrol"
   }
 }
