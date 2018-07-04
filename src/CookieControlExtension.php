@@ -35,8 +35,9 @@ class CookieControlExtension extends Extension
             Requirements::javascript($this->LangFile());
         }
 
-        //Debug::message(str_replace(realpath($_SERVER['DOCUMENT_ROOT'])."/", '', dirname(__DIR__)));
-        //Debug::message(__DIR__ . '/..');
+        if ($this->CookieControl()){
+            Requirements::customScript($this->CookieControl());
+        }
 
         // cookies are removed by javascript, this is just a test for doing it by php
         //Cookie::force_expiry('_ga', '', '.hst1.nl');
@@ -82,8 +83,7 @@ class CookieControlExtension extends Extension
                 $implicit = "true";
             }
 
-            $script = "<script>";
-            $script .= "gdprCookieNotice({";
+            $script = "gdprCookieNotice({";
             $script .= "locale: '".$locale."',";
             $script .= "timeout: $timeout,";
             $script .= "expiration: $expiration,";
@@ -101,7 +101,6 @@ class CookieControlExtension extends Extension
                 $script .= "marketing: ['". $this->getCookiesFromConfig('MarketingCookies')."']";
             }
             $script .= "});";
-            $script .= "</script>";
 
             return $script;
 
@@ -117,10 +116,10 @@ class CookieControlExtension extends Extension
 
     }
 
-    public function getModulePath(){
+    /*public function getModulePath(){
 
         return str_replace(realpath($_SERVER['DOCUMENT_ROOT'])."/", '', dirname(__DIR__));
 
-    }
+    }*/
 
 }
