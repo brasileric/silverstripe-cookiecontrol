@@ -27,7 +27,7 @@ class CookieControlExtension extends Extension
                 'resources/hestec/silverstripe-cookiecontrol/javascript/js.cookie.js',
                 'resources/hestec/silverstripe-cookiecontrol/javascript/script.js',
                 'resources/hestec/silverstripe-cookiecontrol/javascript/templates.js',
-                $this->getModulePath().'/lang/en.js'
+                'resources/hestec/silverstripe-cookiecontrol/javascript/lang/en.js'
             ]
         );
 
@@ -52,8 +52,8 @@ class CookieControlExtension extends Extension
             return "mysite/lang/cookiecontrol/".$langfile;
         }
         //elseif (file_exists($docroot."/vender/hestec/silverstripe-cookiecontrol/lang/".$langfile)){
-        elseif (file_exists($this->getModulePath()."/lang/".$langfile)){
-            return $this->getModulePath()."/lang/".$langfile;
+        elseif (file_exists($docroot."/resources/hestec/silverstripe-cookiecontrol/javascript/lang/".$langfile)){
+            return "resources/hestec/silverstripe-cookiecontrol/javascript/lang/".$langfile;
         }
         return false;
 
