@@ -2,10 +2,10 @@
 name: cookiecontrol
 ---
 
-Page_Controller:
+PageController:
   extensions:
-    - CookieControlExtension
+    - Hestec\CookieControl\CookieControlExtension
 
-SiteConfig:
+SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - CookieControlSiteConfig
+    - Hestec\CookieControl\CookieControlSiteConfig

@@ -1,5 +1,9 @@
 <?php
 
+namespace Hestec\CookieControl;
+
+use SilverStripe\Core\Config\Config;
+
 class CookieControl
 {
 

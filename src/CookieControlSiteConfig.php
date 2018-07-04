@@ -1,5 +1,15 @@
 <?php
 
+namespace Hestec\CookieControl;
+
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\TreeDropdownField;
+use SilverStripe\CMS\Model\SiteTree;
+
 class CookieControlSiteConfig extends DataExtension {
 
     private static $db = array(
@@ -13,7 +23,7 @@ class CookieControlSiteConfig extends DataExtension {
     );
 
     private static $has_one = array(
-        'CcStatement' => 'SiteTree'
+        'CcStatement' => SiteTree::class
     );
 
     public function updateCMSFields(FieldList $fields)
@@ -32,7 +42,7 @@ class CookieControlSiteConfig extends DataExtension {
         $CcAnalyticsField = CheckboxField::create('CcAnalytics', _t("CookieControlSiteConfig.ANALYTICS_COOKIES", "Analytics cookies"));
         $CcMarketingField = CheckboxField::create('CcMarketing', _t("CookieControlSiteConfig.MARKETING_COOKIES", "Marketing cookies"));
 
-        $CcStatementField = TreeDropdownField::create('CcStatementID', _t("CookieBarSiteConfig.COOKIE_STATEMENTPAGE", "Cookie statement page"), 'SiteTree');
+        $CcStatementField = TreeDropdownField::create('CcStatementID', _t("CookieBarSiteConfig.COOKIE_STATEMENTPAGE", "Cookie statement page"), SiteTree::class);
 
         $fields->addFieldsToTab("Root."._t("CookieControlSiteConfig.COOKIECONTROL", "CookieControl"), array(
             $EnableField,

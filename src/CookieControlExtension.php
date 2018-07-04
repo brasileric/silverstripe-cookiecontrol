@@ -1,11 +1,19 @@
 <?php
 
+namespace Hestec\CookieControl;
+
+use SilverStripe\Core\Extension;
+use SilverStripe\Dev\Debug;
+use SilverStripe\View\Requirements;
+use SilverStripe\i18n\i18n;
+use SilverStripe\SiteConfig\SiteConfig;
+
 class CookieControlExtension extends Extension
 {
 
     public function onAfterInit(){
 
-        Requirements::css("cookiecontrol/css/style.css");
+        Requirements::css("resources/hestec/silverstripe-cookiecontrol/css/style.css");
         //Requirements::javascript("cookiecontrol/javascript/script.min.js");
 
         //Requirements::javascript("cookiecontrol/javascript/js.cookie.js");
@@ -16,16 +24,19 @@ class CookieControlExtension extends Extension
         Requirements::combine_files(
             'cookiecontrol.js',
             [
-                'cookiecontrol/javascript/js.cookie.js',
-                'cookiecontrol/javascript/script.js',
-                'cookiecontrol/javascript/templates.js',
-                'cookiecontrol/lang/en.js'
+                'resources/hestec/silverstripe-cookiecontrol/javascript/js.cookie.js',
+                'resources/hestec/silverstripe-cookiecontrol/javascript/script.js',
+                'resources/hestec/silverstripe-cookiecontrol/javascript/templates.js',
+                $this->getModulePath().'/lang/en.js'
             ]
         );
 
         if ($this->LangFile()){
             Requirements::javascript($this->LangFile());
         }
+
+        //Debug::message(str_replace(realpath($_SERVER['DOCUMENT_ROOT'])."/", '', dirname(__DIR__)));
+        //Debug::message(__DIR__ . '/..');
 
         // cookies are removed by javascript, this is just a test for doing it by php
         //Cookie::force_expiry('_ga', '', '.hst1.nl');
@@ -35,12 +46,14 @@ class CookieControlExtension extends Extension
     public function LangFile(){
 
         $docroot = realpath($_SERVER['DOCUMENT_ROOT']);
-        $langfile = i18n::get_lang_from_locale(i18n::get_locale()).".js";
+        $langfile = substr(i18n::get_locale(), 0, 2).".js";
+        //$langfile = i18n::get_lang_from_locale(i18n::get_locale()).".js";
         if (file_exists($docroot."/mysite/lang/cookiecontrol/".$langfile)){
             return "mysite/lang/cookiecontrol/".$langfile;
         }
-        elseif (file_exists($docroot."/cookiecontrol/lang/".$langfile)){
-            return "cookiecontrol/lang/".$langfile;
+        //elseif (file_exists($docroot."/vender/hestec/silverstripe-cookiecontrol/lang/".$langfile)){
+        elseif (file_exists($this->getModulePath()."/lang/".$langfile)){
+            return $this->getModulePath()."/lang/".$langfile;
         }
         return false;
 
@@ -62,7 +75,7 @@ class CookieControlExtension extends Extension
             }
             $locale = "en";
             if ($this->LangFile()){
-                $locale = i18n::get_lang_from_locale(i18n::get_locale());
+                $locale = substr(i18n::get_locale(), 0, 2);
             }
             $implicit = "false";
             if ($siteConfig->CcImplicit == true) {
@@ -101,6 +114,12 @@ class CookieControlExtension extends Extension
     public function getCookiesFromConfig($type){
 
         return str_replace(",", "','", str_replace(' ', '', CookieControl::getCookies($type)));
+
+    }
+
+    public function getModulePath(){
+
+        return str_replace(realpath($_SERVER['DOCUMENT_ROOT'])."/", '', dirname(__DIR__));
 
     }
 
