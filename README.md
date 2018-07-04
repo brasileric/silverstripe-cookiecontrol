@@ -1,3 +1,3 @@
-# SilverStripe plugin for CookieBAR #
+# SilverStripe Cookie Control #
 
 GDPR EU cookie notice for SilverStripe 4. Still in progress...
