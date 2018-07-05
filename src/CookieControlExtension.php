@@ -13,30 +13,27 @@ class CookieControlExtension extends Extension
 
     public function onAfterInit(){
 
-        Requirements::css("resources/hestec/silverstripe-cookiecontrol/css/style.css");
-        //Requirements::javascript("cookiecontrol/javascript/script.min.js");
+        // if CookieControl is enabled in the CMS site settings, add the js and css
+        if ($this->CookieControl()) {
 
-        //Requirements::javascript("cookiecontrol/javascript/js.cookie.js");
-        //Requirements::javascript("cookiecontrol/javascript/script.js");
-        //Requirements::javascript("cookiecontrol/javascript/templates.js");
-        //Requirements::javascript("cookiecontrol/lang/en.js");
+            Requirements::css("resources/hestec/silverstripe-cookiecontrol/client/css/style.css");
 
-        Requirements::combine_files(
-            'cookiecontrol.js',
-            [
-                'resources/hestec/silverstripe-cookiecontrol/javascript/js.cookie.js',
-                'resources/hestec/silverstripe-cookiecontrol/javascript/script.js',
-                'resources/hestec/silverstripe-cookiecontrol/javascript/templates.js',
-                'resources/hestec/silverstripe-cookiecontrol/javascript/lang/en.js'
-            ]
-        );
+            Requirements::combine_files(
+                'cookiecontrol.js',
+                [
+                    'resources/hestec/silverstripe-cookiecontrol/client/javascript/js.cookie.js',
+                    'resources/hestec/silverstripe-cookiecontrol/client/javascript/script.js',
+                    'resources/hestec/silverstripe-cookiecontrol/client/javascript/templates.js',
+                    'resources/hestec/silverstripe-cookiecontrol/client/javascript/lang/en.js'
+                ]
+            );
 
-        if ($this->LangFile()){
-            Requirements::javascript($this->LangFile());
-        }
+            if ($this->LangFile()) {
+                Requirements::javascript($this->LangFile());
+            }
 
-        if ($this->CookieControl()){
             Requirements::customScript($this->CookieControl());
+
         }
 
         // cookies are removed by javascript, this is just a test for doing it by php
@@ -53,8 +50,8 @@ class CookieControlExtension extends Extension
             return "mysite/lang/cookiecontrol/".$langfile;
         }
         //elseif (file_exists($docroot."/vender/hestec/silverstripe-cookiecontrol/lang/".$langfile)){
-        elseif (file_exists($docroot."/resources/hestec/silverstripe-cookiecontrol/javascript/lang/".$langfile)){
-            return "resources/hestec/silverstripe-cookiecontrol/javascript/lang/".$langfile;
+        elseif (file_exists($docroot."/resources/hestec/silverstripe-cookiecontrol/client/javascript/lang/".$langfile)){
+            return "resources/hestec/silverstripe-cookiecontrol/client/javascript/lang/".$langfile;
         }
         return false;
 

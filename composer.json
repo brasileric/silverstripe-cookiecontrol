@@ -20,8 +20,7 @@
   },
   "extra": {
     "expose": [
-      "css",
-      "javascript"
+      "client"
     ],
     "installer-name": "silverstripe-cookiecontrol"
   }
