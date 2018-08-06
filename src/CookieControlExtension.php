@@ -46,8 +46,8 @@ class CookieControlExtension extends Extension
         $docroot = realpath($_SERVER['DOCUMENT_ROOT']);
         $langfile = substr(i18n::get_locale(), 0, 2).".js";
         //$langfile = i18n::get_lang_from_locale(i18n::get_locale()).".js";
-        if (file_exists($docroot."/mysite/lang/cookiecontrol/".$langfile)){
-            return "mysite/lang/cookiecontrol/".$langfile;
+        if (file_exists($docroot."/app/lang/cookiecontrol/".$langfile)){
+            return "app/lang/cookiecontrol/".$langfile;
         }
         //elseif (file_exists($docroot."/vender/hestec/silverstripe-cookiecontrol/lang/".$langfile)){
         elseif (file_exists($docroot."/resources/hestec/silverstripe-cookiecontrol/client/javascript/lang/".$langfile)){
